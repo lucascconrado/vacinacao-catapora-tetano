@@ -1,1 +1,289 @@
- 
+ /* --- 0. RESET E BASE GERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Tipografia e Fundo */
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4; /* Fundo suave */
+    color: #333;
+    padding-top: 70px; /* Garante que o conteúdo não fique sob o header fixo */
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em; 
+    color: #004d99; /* Azul escuro principal para os títulos */
+}
+
+/* --- 1. HEADER (TOPO) - ESTRUTURA E ESTILIZAÇÃO --- */
+
+.Topo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff; /* Azul primário */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.favicon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.Topo a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Navegação do Menu */
+.Topo nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.Topo nav a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.Topo nav a:hover {
+    background-color: #0056b3;
+}
+
+/* Destaque do Botão "Onde Vacinar?" (Verde) */
+.Topo nav a[href="#postos"] {
+    background-color: #28a745;
+    font-weight: bold;
+}
+
+.Topo nav a[href="#postos"]:hover {
+    background-color: #1e7e34;
+}
+
+/* Oculta o botão de menu no Desktop */
+.menu-toggle {
+    display: none; 
+}
+
+
+/* --- 2. SEÇÃO GERAL E UTILITÁRIOS --- */
+
+section {
+    padding: 40px 20px;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Efeito Hover/Levantamento para TODOS os cards */
+.pilar-card, .doenca-card, .dados-card, .posto-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pilar-card:hover, .doenca-card:hover, .dados-card:hover, .posto-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Botões CTA */
+.btn-cta-large, .btn-secondary, .btn-primary-card {
+    display: inline-block;
+    padding: 16px 20px; 
+    border-radius: 8px; 
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none; 
+    transition: background-color 0.3s ease;
+}
+.btn-cta-large {
+    background-color: #28a745; 
+    color: white; 
+    display: block; 
+    width: 90%; 
+    max-width: 400px;
+    margin: 30px auto; 
+}
+.btn-cta-large:hover { background-color: #1e7e34; }
+
+.btn-secondary { background-color: #007bff; color: white; padding: 8px 15px; margin-top: 10px; }
+.btn-primary-card { background-color: #28a745; color: white; padding: 8px 15px; margin-top: 10px; }
+.btn-secondary:hover { background-color: #0056b3; }
+.btn-primary-card:hover { background-color: #1e7e34; }
+
+
+/* --- 3. SEÇÕES E LAYOUT DE CONTEÚDO --- */
+
+/* Hero Section */
+.hero-section { background-color: #e9f5ff; text-align: center; }
+.hero-section p { max-width: 800px; margin: 0 auto; text-align: justify; }
+
+/* Pilares */
+.pilares-site { background-color: #fff; text-align: center; }
+.pilares-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.pilar-card { background-color: #f8f8f8; border-radius: 8px; padding: 20px; flex-basis: 90%; max-width: 350px; }
+
+/* Doenças */
+#doencas { background-color: #f0f7ff; }
+.doencas-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+.doenca-card { 
+    background-color: white; border-radius: 10px; padding: 25px; flex-basis: 90%; max-width: 500px;
+    border-top: 5px solid; 
+}
+.varicela-card { border-top-color: #ffc107; } 
+.tetano-card { border-top-color: #dc3545; } 
+
+/* Dados */
+#dados { background-color: #eaf7ea; }
+.dados-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.dados-card { 
+    background-color: white; border-left: 5px solid #28a745; padding: 20px; flex-basis: 90%; max-width: 350px;
+    border-radius: 8px; 
+}
+
+/* Postos (Visita Técnica) */
+#postos { background-color: #f7fcff; }
+.posto-card {
+    background-color: #ffffff; border-left: 5px solid #007bff; padding: 20px; flex-basis: 90%; max-width: 350px;
+    border-radius: 8px; 
+}
+.posto-card.destaque { border-left: 5px solid #28a745; background-color: #e6f7e6; }
+
+/* Bloco da Visita Técnica */
+.visita-tecnica-resumo {
+    background-color: #e6f0ff; padding: 25px; border-radius: 10px; margin-bottom: 30px; 
+    box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.1); text-align: left; 
+}
+.visita-tecnica-resumo li { list-style-type: none; margin-bottom: 12px; padding-left: 15px; border-left: 4px solid #007bff; }
+
+/* Alerta de Fluxo */
+.alerta-importante {
+    background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; max-width: 90%;
+    margin: 20px auto; font-weight: bold; text-align: center; border: 1px solid #ffe5b4;
+}
+
+/* --- 4. GAVETA DE DETALHES (Maps e Contato) --- */
+
+.posto-detalhes-gaveta {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    margin-top: 5px;
+    background-color: #f8f8f8; 
+    border-radius: 0 0 8px 8px;
+    /* Transição para abertura suave */
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; 
+}
+
+.posto-detalhes-gaveta.open {
+    max-height: 200px;
+    padding: 15px 10px;
+}
+
+.gaveta-content-posto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-gaveta {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btn-gaveta.btn-ligar-posto { background-color: #007bff; color: white; }
+.btn-gaveta.btn-maps-posto { background-color: #28a745; color: white; }
+.btn-gaveta.btn-ligar-posto:hover { background-color: #0056b3; }
+.btn-gaveta.btn-maps-posto:hover { background-color: #1e7e34; }
+
+
+/* --- 5. CONCLUSÃO E FOOTER --- */
+.conclusao-section { background-color: #fff; text-align: center; }
+.footer { background-color: #007bff; color: white; text-align: center; padding: 20px; font-size: 0.9em; }
+
+
+/* --- 6. RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+/* Tablet/Desktop (Acima de 768px) */
+@media (min-width: 768px) {
+    .Topo { padding: 15px 50px; }
+    .hero-section h1 { font-size: 2.5em; }
+    
+    /* Layout Lado a Lado para Containers */
+    .pilares-container, .doencas-container, .dados-container, .postos-container { flex-wrap: nowrap; }
+    .postos-container { flex-wrap: wrap; } 
+    
+    /* Largura dos Cards */
+    .pilar-card, .dados-card { flex-basis: calc(33.33% - 20px); }
+    .doenca-card { flex-basis: calc(50% - 15px); }
+    .posto-card { flex-basis: calc(33.33% - 20px); }
+
+    .visita-tecnica-resumo { max-width: 900px; margin: 0 auto 30px auto; }
+}
+
+/* Mobile (Até 768px) */
+@media (max-width: 768px) {
+    /* Mostra o botão de hambúrguer */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    /* Oculta o menu de navegação (JS vai mostrar) */
+    .Topo nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #0056b3; 
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+    }
+
+    /* Estilo do menu aberto em coluna */
+    .Topo nav ul { flex-direction: column; gap: 0; }
+    .Topo nav a { display: block; padding: 12px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    
+    /* Reduz o padding lateral da seção no mobile */
+    section { padding: 30px 15px; } 
+}
