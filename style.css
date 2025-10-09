@@ -388,3 +388,15 @@ section {
 
   section { padding: 30px 15px; }
 }
+
+
+/* EFEITO MEGA SUAVE - Apenas elevação com sombra */
+.pilar-card, .doenca-card, .dados-card, .posto-card {
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.pilar-card:hover, .doenca-card:hover, .dados-card:hover, .posto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
