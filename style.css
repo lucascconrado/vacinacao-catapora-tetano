@@ -400,3 +400,37 @@ section {
     transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
+
+
+/* --- ESTILO PARA CORTAR O CABEÇALHO DO MAPA (Truque Arriscado) --- */
+
+.map-container {
+    /* Mantém o container como ponto de referência e limite */
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    overflow: hidden; /* CRÍTICO: Esconde o que estiver fora */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-cropper {
+    /* Esta DIV é a janela de visualização do mapa */
+    height: 450px; /* Altura final que você quer que o mapa tenha */
+    overflow: hidden;
+    position: relative;
+}
+
+.map-cropper iframe {
+    /* Move o conteúdo do iframe para cima. 
+       -60px deve cortar a barra preta (o cabeçalho). */
+    margin-top: -68px; /* AJUSTE ESTE VALOR (ex: -50px a -70px) */
+    
+    /* Aumenta a altura do iframe para que o mapa não seja cortado
+       na parte inferior após o deslocamento para cima. */
+    height: calc(100% + 60px); 
+    width: 100%;
+    border: none;
+}
+.maps h2{
+  text-align: center;
+}
