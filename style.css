@@ -2,120 +2,129 @@
    0. RESET E BASE GERAL
 ========================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-  padding-top: 70px;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 70px; /* Garante que o conteúdo não fique sob o header */
 }
 
 h1, h2, h3 {
-  margin-bottom: 0.5em;
-  color: #004d99;
+    margin-bottom: 0.5em;
+    color: #004d99; /* Azul escuro para melhor contraste */
 }
 
 /* =========================
    1. HEADER (TOPO)
 ========================= */
 .Topo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #007bff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
 }
 
 .logo h1 {
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
 
 .favicon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
 .Topo a {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
 }
 
 .Topo nav ul {
-  list-style: none;
-  display: flex;
-  gap: 18px;
+    list-style: none;
+    display: flex;
+    gap: 18px;
 }
 
 .Topo nav a {
-  color: white;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .Topo nav a:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
-/* Botão verde "Onde Vacinar?" */
 .Topo nav a[href="#postos"] {
-  background-color: #28a745;
-  font-weight: bold;
+    background-color: #28a745;
+    font-weight: bold;
 }
 
 .Topo nav a[href="#postos"]:hover {
-  background-color: #1e7e34;
+    background-color: #1e7e34;
 }
 
-/* Menu Toggle */
 .menu-toggle {
-  display: none;
+    display: none; /* Escondido por padrão no desktop */
 }
 
 /* =========================
-   2. BOTÕES GERAIS
+   2. LAYOUT GERAL E COMPONENTES
 ========================= */
+section {
+    padding: 50px 20px;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    color: #555;
+}
+
+/* --- Botões --- */
 .btn-cta-large, .btn-secondary, .btn-primary-card {
-  display: inline-block;
-  padding: 14px 18px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+    display: inline-block;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-cta-large:hover, .btn-secondary:hover, .btn-primary-card:hover {
+    transform: translateY(-2px);
 }
 
 .btn-cta-large {
-  background-color: #28a745;
-  color: white;
-  display: block;
-  width: 90%;
-  max-width: 420px;
-  margin: 30px auto;
+    background-color: #28a745;
+    color: white;
+    display: block;
+    width: 90%;
+    max-width: 420px;
+    margin: 30px auto;
 }
-
 .btn-cta-large:hover { background-color: #1e7e34; }
 
 .btn-secondary { background-color: #007bff; color: white; }
@@ -124,313 +133,273 @@ h1, h2, h3 {
 .btn-primary-card { background-color: #28a745; color: white; }
 .btn-primary-card:hover { background-color: #1e7e34; }
 
+
 /* =========================
-   3. SEÇÕES E LAYOUT
+   3. SEÇÕES DE CONTEÚDO
 ========================= */
-section {
-  padding: 50px 20px;
-}
 
-.section-description {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 30px auto;
-  color: #555;
-}
-
-/* HERO */
+/* --- HERO --- */
 .hero-section {
-  background-color: #e9f5ff;
-  text-align: center;
-  padding: 80px 20px;
+    background-color: #e9f5ff;
+    text-align: center;
+    padding: 80px 20px;
 }
 .hero-section p {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: justify;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: justify;
 }
 
-/* PILARES */
+/* --- Efeito Hover para TODOS os Cards --- */
+.pilar-card, .doenca-card, .dados-card, .posto-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pilar-card:hover, .doenca-card:hover, .dados-card:hover, .posto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Pilares --- */
 .pilares-site { background-color: #fff; text-align: center; }
-.pilares-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
+.pilares-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
 .pilar-card {
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  padding: 20px;
-  flex-basis: 90%;
-  max-width: 350px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.pilar-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 20px;
+    flex-basis: 90%;
+    max-width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* DOENÇAS */
+/* --- Doenças --- */
 #doencas { background-color: #f0f7ff; }
-.doencas-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-}
+.doencas-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
 .doenca-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 25px;
-  flex-basis: 90%;
-  max-width: 500px;
-  border-top: 5px solid;
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    flex-basis: 90%;
+    max-width: 500px;
+    border-top: 5px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 .varicela-card { border-top-color: #ffc107; }
 .tetano-card { border-top-color: #dc3545; }
 
-/* DADOS */
+/* --- Dados --- */
 #dados { background-color: #eaf7ea; }
-.dados-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
+.dados-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
 .dados-card {
-  background-color: white;
-  border-left: 5px solid #28a745;
-  padding: 20px;
-  flex-basis: 90%;
-  max-width: 350px;
-  border-radius: 8px;
+    background-color: white;
+    border-left: 5px solid #28a745;
+    padding: 20px;
+    flex-basis: 90%;
+    max-width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* =========================
-   4. POSTOS E VISITA TÉCNICA
-========================= */
+/* --- Postos e Visita Técnica --- */
 #postos { background-color: #f7fcff; }
-
 .visita-tecnica-resumo {
-  background-color: #e6f0ff;
-  padding: 25px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.1);
-  text-align: left;
+    background-color: #e6f0ff;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.1);
+    text-align: left;
 }
 .visita-tecnica-resumo li {
-  list-style-type: none;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  border-left: 4px solid #007bff;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border-left: 4px solid #007bff;
 }
 
 .alerta-importante {
-  background-color: #fff3cd;
-  color: #856404;
-  padding: 15px;
-  border-radius: 8px;
-  max-width: 90%;
-  margin: 20px auto;
-  font-weight: bold;
-  text-align: center;
-  border: 1px solid #ffe5b4;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 90%;
+    margin: 20px auto;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ffe5b4;
 }
 
-/* CARDS DE POSTOS */
-.postos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
+.postos-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
 .posto-card {
-  background-color: #ffffff;
-  border-left: 5px solid #007bff;
-  padding: 20px;
-  flex-basis: 90%;
-  max-width: 350px;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+    background-color: #ffffff;
+    border-left: 5px solid #007bff;
+    padding: 20px;
+    flex-basis: 90%;
+    max-width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
 }
+.posto-card.destaque { border-left: 5px solid #28a745; background-color: #e8f9e8; }
+.posto-card.fluxo-intenso { border-left-color: #dc3545; background-color: #fde8e8; }
 
-.posto-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-}
 
-/* Posto com destaque padrão (Santa Rita) */
-.posto-card.destaque {
-  border-left: 5px solid #28a745;
-  background-color: #e8f9e8;
-}
-
-/* Postos de fluxo intenso: Vila de Cava e Corumbá */
-.posto-card.fluxo-intenso {
-  border-left: 6px solid #dc3545;
-  background-color: #fde8e8;
-  position: relative;
-}
-.posto-card.fluxo-intenso::before {
-  content: "⚠️ Fluxo Intenso";
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: #dc3545;
-  color: white;
-  font-size: 0.75em;
-  font-weight: bold;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
-/* GAVETA (detalhes dos postos) */
+/* --- Gaveta de Detalhes dos Postos --- */
 .posto-detalhes-gaveta {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 10px;
-  margin-top: 5px;
-  background-color: #f8f8f8;
-  border-radius: 0 0 8px 8px;
-  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    margin-top: 5px;
+    background-color: #f8f8f8;
+    border-radius: 0 0 8px 8px;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
 }
 .posto-detalhes-gaveta.open {
-  max-height: 200px;
-  padding: 15px 10px;
+    max-height: 200px;
+    padding: 15px 10px;
 }
-
-.gaveta-content-posto {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+.gaveta-content-posto { display: flex; flex-direction: column; gap: 10px; }
 .btn-gaveta {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 .btn-gaveta.btn-ligar-posto { background-color: #007bff; color: white; }
 .btn-gaveta.btn-maps-posto { background-color: #28a745; color: white; }
 .btn-gaveta.btn-ligar-posto:hover { background-color: #0056b3; }
 .btn-gaveta.btn-maps-posto:hover { background-color: #1e7e34; }
 
-/* =========================
-   5. CONCLUSÃO E FOOTER
-========================= */
+/* --- Mapa --- */
+.map-container {
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.map-cropper {
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+.map-cropper iframe {
+    margin-top: -68px; /* Ajuste para cortar o header do mapa */
+    height: calc(100% + 68px); 
+    width: 100%;
+    border: none;
+}
+.maps h2 { text-align: center; }
+
+/* --- Conclusão e Footer --- */
 .conclusao-section { background-color: #fff; text-align: center; }
 .footer {
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9em;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
 }
 
 /* =========================
    6. RESPONSIVIDADE
 ========================= */
+
+/* --- Tablet e Desktop (Acima de 768px) --- */
 @media (min-width: 768px) {
-  .Topo { padding: 15px 50px; }
-  .hero-section h1 { font-size: 2.4em; }
+    .Topo { padding: 15px 50px; }
+    .hero-section h1 { font-size: 2.4em; }
 
-  .pilares-container, .doencas-container, .dados-container, .postos-container {
-    flex-wrap: nowrap;
-  }
-  .postos-container { flex-wrap: wrap; }
+    .pilares-container, .doencas-container, .dados-container {
+        flex-wrap: nowrap;
+    }
 
-  .pilar-card, .dados-card { flex-basis: calc(33.33% - 20px); }
-  .doenca-card { flex-basis: calc(50% - 15px); }
-  .posto-card { flex-basis: calc(33.33% - 20px); }
+    .pilar-card, .dados-card { flex-basis: calc(33.33% - 20px); }
+    .doenca-card { flex-basis: calc(50% - 15px); }
+    .posto-card { flex-basis: calc(33.33% - 20px); }
 
-  .visita-tecnica-resumo { max-width: 900px; margin: 0 auto 30px auto; }
+    .visita-tecnica-resumo { max-width: 900px; margin: 0 auto 30px auto; }
 }
 
+/* --- Mobile (Até 768px) --- */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    background: none;
-    border: none;
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .Topo nav {
+        display: none;
+        position: absolute;
+        top: 60px; /* Alinha abaixo da altura do header */
+        left: 0;
+        width: 100%;
+        background-color: #0056b3; /* Cor mais escura para o menu aberto */
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+    }
+
+    .Topo nav.active {
+        display: block; /* Mostra o menu quando o JS adiciona a classe */
+    }
+
+    .Topo nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .Topo nav a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    section { padding: 30px 15px; }
+}
+
+
+/* --- ESTILO DO FOOTER ATUALIZADO --- */
+.footer {
+    background-color: #0056b3; /* Um azul um pouco mais escuro que o header */
     color: white;
-    font-size: 28px;
-    cursor: pointer;
-  }
-
-  .Topo nav {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: #0056b3;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-  }
-
-  .Topo nav ul {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .Topo nav a {
-    display: block;
-    padding: 12px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  section { padding: 30px 15px; }
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9em;
 }
 
-
-/* EFEITO MEGA SUAVE - Apenas elevação com sombra */
-.pilar-card, .doenca-card, .dados-card, .posto-card {
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
+.autores-container {
+    max-width: 800px;
+    margin: 0 auto 20px auto; /* Espaço abaixo da lista de autores */
+    text-align: left;
 }
 
-.pilar-card:hover, .doenca-card:hover, .dados-card:hover, .posto-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+.autores-container h4 {
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-
-/* --- ESTILO PARA CORTAR O CABEÇALHO DO MAPA (Truque Arriscado) --- */
-
-.map-container {
-    /* Mantém o container como ponto de referência e limite */
-    margin: 20px auto;
-    max-width: 900px;
-    border-radius: 8px;
-    overflow: hidden; /* CRÍTICO: Esconde o que estiver fora */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.autores-container ul {
+    list-style: none; /* Remove os pontos da lista */
+    padding: 0;
 }
 
-.map-cropper {
-    /* Esta DIV é a janela de visualização do mapa */
-    height: 450px; /* Altura final que você quer que o mapa tenha */
-    overflow: hidden;
-    position: relative;
+.autores-container li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
 }
 
-.map-cropper iframe {
-    /* Move o conteúdo do iframe para cima. 
-       -60px deve cortar a barra preta (o cabeçalho). */
-    margin-top: -68px; /* AJUSTE ESTE VALOR (ex: -50px a -70px) */
-    
-    /* Aumenta a altura do iframe para que o mapa não seja cortado
-       na parte inferior após o deslocamento para cima. */
-    height: calc(100% + 60px); 
-    width: 100%;
-    border: none;
-}
-.maps h2{
-  text-align: center;
+.creditos-academicos {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    font-size: 0.85em;
+    opacity: 0.8;
 }
