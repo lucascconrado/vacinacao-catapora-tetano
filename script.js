@@ -1,25 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('#main-nav');
-    
-    // 1. FUNCIONALIDADE DO MENU HAMBÚRGUER
-    menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-    });
-
-    // Fecha o menu ao clicar em um link
-    const navLinks = document.querySelectorAll('#main-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mainNav.classList.remove('active');
-        });
-    });
-
-    // 2. CONFIGURAÇÃO DOS CARDS DOS POSTOS - VERSÃO SIMPLIFICADA
-    configurarPostos();
-});
-
-// DADOS DOS POSTOS
+// DADOS DOS POSTOS (Globais)
 const postosData = [
     { 
         nome: "Rancho Fundo", 
@@ -53,54 +32,46 @@ const postosData = [
     }
 ];
 
-// CONFIGURA OS POSTOS - VERSÃO MAIS ROBUSTA
+// FUNÇÃO: Configura Cards e Eventos de Clique
 function configurarPostos() {
     const cards = document.querySelectorAll('.posto-card');
-    console.log('Encontrados', cards.length, 'cards de postos'); // Debug
     
     cards.forEach((card, index) => {
-        console.log('Configurando card:', index, postosData[index].nome); // Debug
-        
-        // Aplica a classe de fluxo
-        card.classList.add(`fluxo-${postosData[index].fluxo}`);
-        
-        // Destaque para Santa Rita
-        if (postosData[index].nome === "Santa Rita") {
-            card.classList.add('destaque');
+        if (postosData[index]) {
+            // Aplica a classe de fluxo (para estilização)
+            card.classList.add(`fluxo-${postosData[index].fluxo}`);
+            
+            // Destaque para Santa Rita
+            if (postosData[index].nome === "Santa Rita") {
+                card.classList.add('destaque');
+            }
+            
+            // Não adicionamos mais o event listener aqui no JS, 
+            // pois o evento será adicionado no DOMContentLoaded para ter certeza 
+            // de que a lógica é inicializada corretamente.
         }
-        
-        // Adiciona evento de clique DIRETO no card
-        card.addEventListener('click', function() {
-            console.log('Clicou no card:', index); // Debug
-            toggleDetalhesPosto(index);
-        });
     });
 }
 
-// FUNÇÃO SIMPLIFICADA PARA ABRIR/FECHAR GAVETAS
+// FUNÇÃO: Abre/Fecha Gavetas e Carrega Links do Maps/Contato
 function toggleDetalhesPosto(index) {
-    console.log('Toggle detalhes posto:', index); // Debug
-    
     const gaveta = document.getElementById(`gaveta-posto-${index}`);
     
-    if (!gaveta) {
-        console.error('Gaveta não encontrada para índice:', index);
+    if (!gaveta || !postosData[index]) {
+        console.error('Dados ou Gaveta não encontrada para índice:', index);
         return;
     }
     
     const estaAberta = gaveta.classList.contains('open');
     
-    // Fecha todas as gavetas primeiro
-    document.querySelectorAll('.posto-detalhes-gaveta').forEach(g => {
+    // Fecha todas as outras gavetas e remove os highlights
+    document.querySelectorAll('.posto-detalhes-gaveta.open').forEach(g => {
         g.classList.remove('open');
         g.innerHTML = '';
+        g.parentElement.classList.remove('active');
     });
     
-    document.querySelectorAll('.posto-card').forEach(c => {
-        c.classList.remove('active');
-    });
-    
-    // Se não estava aberta, abre esta
+    // Se não estava aberta, abre esta gaveta
     if (!estaAberta) {
         const data = postosData[index];
         const telefoneNumerico = data.contato.replace(/\D/g, '');
@@ -111,52 +82,63 @@ function toggleDetalhesPosto(index) {
                 <a href="tel:${telefoneNumerico}" class="btn-gaveta btn-ligar-posto">
                     📞 Ligar: ${data.contato}
                 </a>
-                <a target="_blank" href="${data.link}" class="btn-gaveta btn-maps-posto">
+                <a target="_blank"rel="noopener noreferrer" href="${data.link}" class="btn-gaveta btn-maps-posto">
                     🗺️ Abrir no Google Maps
                 </a>
             </div>
         `;
         gaveta.classList.add('open');
-        gaveta.parentElement.classList.add('active');
-        
-        console.log('Gaveta aberta:', index); // Debug
+        gaveta.parentElement.classList.add('active'); // Adiciona destaque ao card
     }
 }
 
-
-// A sua função abrirLightbox permanece a mesma
+// FUNÇÃO: Lógica do Lightbox (Abre a imagem em tela cheia)
 function abrirLightbox(imgSrc, captionText) {
     const modal = document.getElementById("lightbox-modal");
     const modalImg = document.getElementById("lightbox-img");
     const captionTextElement = document.getElementById("caption");
 
-    modal.style.display = "block";
-    modalImg.src = imgSrc;
-    captionTextElement.innerHTML = captionText;
-
-    document.querySelector('#main-nav').classList.remove('active');
+    if (modal && modalImg && captionTextElement) {
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+        captionTextElement.innerHTML = captionText;
+        
+        // Garante que o menu hambúrguer feche se o lightbox abrir
+        document.querySelector('#main-nav')?.classList.remove('active');
+    }
 }
 
-// O restante do seu script.js deve ter este bloco principal que já temos:
+
+// =========================================================================
+// INICIALIZAÇÃO ÚNICA: Consolidando todos os listeners e inicializações
+// =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Lógica do Menu Hambúrguer (Header)
+    // --- Variáveis Globais ---
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNav = document.querySelector('#main-nav');
-    menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-    });
-    // ... restante da lógica do menu ...
-
-    // 2. LÓGICA DO LIGHTBOX PARA FECHAR (INICIALIZAÇÃO TARDIA)
     const lightboxModal = document.getElementById("lightbox-modal");
 
-    if (lightboxModal) { // Verifica se o modal existe antes de anexar eventos
-        // Fechar ao clicar no botão X
+    // --- 1. Inicialização do Menu Hambúrguer (Header) ---
+    if (menuToggle && mainNav) {
+        // Ativar/Desativar o Menu
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Fechar o menu ao clicar em um link (Melhora UX)
+        const navLinks = document.querySelectorAll('#main-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+            });
+        });
+    }
+
+    // --- 2. Inicialização do Lightbox para Fechar ---
+    if (lightboxModal) {
         document.querySelector(".close-btn").onclick = function() { 
             lightboxModal.style.display = "none";
         }
-
-        // Fechar ao clicar fora da imagem
         lightboxModal.onclick = function(event) {
             if (event.target === lightboxModal) {
                 lightboxModal.style.display = "none";
@@ -164,8 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // ... restante da sua lógica de configurarPostos()...
-});
+    // --- 3. Inicialização e Eventos dos Postos (Gaveta) ---
+    configurarPostos(); // Aplica classes iniciais e destaques
 
-// A função toggleDetalhesPosto(index) e postosData devem estar fora do DOMContentLoaded,
-// ou definidas globalmente para serem acessíveis pelo onclick do HTML.
+    // Adiciona o event listener de clique para a gaveta em cada card
+    document.querySelectorAll('.posto-card').forEach((card, index) => {
+        card.addEventListener('click', function() {
+            toggleDetalhesPosto(index); // Chama a função de gaveta
+        });
+    });
+});

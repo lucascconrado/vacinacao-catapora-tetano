@@ -1,4 +1,79 @@
 /* =========================
+   1. HEADER (TOPO) - CORRIGIDO E ESTÁVEL
+========================= */
+.Topo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+.menu-toggle {
+    display: none; /* Escondido por padrão (Desktop) */
+}
+
+/* Regras de Nav/Menu (O que o JS irá manipular no mobile) */
+.Topo nav {
+    /* IMPORTANTE: Prepara o menu para o mobile, mas só será ativado no @media */
+    transition: display 0.3s ease; 
+}
+
+/* --- RESPONSIVIDADE DO HEADER (ATIVAÇÃO DO BOTÃO) --- */
+
+@media (max-width: 768px) {
+    /* 1. MOSTRA O BOTÃO HAMBÚRGUER */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    /* 2. ESCONDE O MENU NO MOBILE E O POSICIONA PARA A ABERTURA */
+    .Topo nav {
+        display: none; /* ESCONDIDO */
+        position: absolute;
+        top: 60px; /* Alinha abaixo da header */
+        left: 0;
+        width: 100%;
+        background-color: #0056b3;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+    }
+
+    /* 3. ESTADO ATIVO: QUANDO O JS ADICIONA A CLASSE */
+    .Topo nav.active {
+        display: block; /* MOSTRADO */
+    }
+
+    /* Estilo da lista vertical */
+    .Topo nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .Topo nav a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+
+
+
+
+
+/* =========================
    0. RESET E BASE GERAL
 ========================= */
 * {
@@ -86,6 +161,49 @@ h1, h2, h3 {
 
 .menu-toggle {
     display: none; /* Escondido por padrão no desktop */
+}
+
+/* --- RESPONSIVIDADE DO HEADER (CRÍTICO PARA O HAMBÚRGUER) --- */
+
+@media (max-width: 768px) {
+    /* 1. MOSTRA O BOTÃO HAMBÚRGUER */
+    .menu-toggle {
+        display: block; /* Sobrescreve o 'display: none' do desktop */
+        background: none;
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    /* 2. ESCONDE O MENU POR PADRÃO (prepara para ser aberto) */
+    .Topo nav {
+        display: none; /* Oculta o menu de navegação */
+        position: absolute; /* Permite que o menu flutue abaixo do header */
+        top: 60px; /* IMPORTANTE: Começa logo abaixo do header */
+        left: 0;
+        width: 100%;
+        background-color: #0056b3; /* Fundo do menu aberto */
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+    }
+
+    /* 3. ESTADO ATIVO: O JS adiciona esta classe para MOSTRAR o menu */
+    .Topo nav.active {
+        display: block; 
+    }
+
+    /* 4. Estilo do menu aberto em coluna */
+    .Topo nav ul {
+        flex-direction: column; /* Lista vertical */
+        gap: 0;
+    }
+
+    .Topo nav a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }
 
 /* =========================
