@@ -122,3 +122,50 @@ function toggleDetalhesPosto(index) {
         console.log('Gaveta aberta:', index); // Debug
     }
 }
+
+
+// A sua função abrirLightbox permanece a mesma
+function abrirLightbox(imgSrc, captionText) {
+    const modal = document.getElementById("lightbox-modal");
+    const modalImg = document.getElementById("lightbox-img");
+    const captionTextElement = document.getElementById("caption");
+
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+    captionTextElement.innerHTML = captionText;
+
+    document.querySelector('#main-nav').classList.remove('active');
+}
+
+// O restante do seu script.js deve ter este bloco principal que já temos:
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Lógica do Menu Hambúrguer (Header)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('#main-nav');
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+    });
+    // ... restante da lógica do menu ...
+
+    // 2. LÓGICA DO LIGHTBOX PARA FECHAR (INICIALIZAÇÃO TARDIA)
+    const lightboxModal = document.getElementById("lightbox-modal");
+
+    if (lightboxModal) { // Verifica se o modal existe antes de anexar eventos
+        // Fechar ao clicar no botão X
+        document.querySelector(".close-btn").onclick = function() { 
+            lightboxModal.style.display = "none";
+        }
+
+        // Fechar ao clicar fora da imagem
+        lightboxModal.onclick = function(event) {
+            if (event.target === lightboxModal) {
+                lightboxModal.style.display = "none";
+            }
+        }
+    }
+    
+    // ... restante da sua lógica de configurarPostos()...
+});
+
+// A função toggleDetalhesPosto(index) e postosData devem estar fora do DOMContentLoaded,
+// ou definidas globalmente para serem acessíveis pelo onclick do HTML.

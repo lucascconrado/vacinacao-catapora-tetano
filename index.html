@@ -21,7 +21,10 @@
          <li><a href="#doencas">Doenças e Vacinas</a></li>
          <li><a href="#dados">Dados</a></li>
          <li><a href="#postos">Onde Vacinar?</a></li>
+         <li><a href="#pontos-mapa">Pontos de Vacinação</a></li>
+         <li><a href="#galeria">Galeria</a></li>
          <li><a href="#final">Conclusão</a></li>
+         
         </ul>
       </nav>
        <button class="menu-toggle" aria-label="Abrir menu de navegação">&#9776;</button>
@@ -129,7 +132,7 @@
             </div>
         </section>
 
-        <section id="postos" class="postos-section">
+        <section class="postos-section">
             <h2>Mapeamento da Rede de Vacinação - Nova Iguaçu</h2>
             
             <div class="visita-tecnica-resumo">
@@ -152,9 +155,9 @@
                 <strong>Atenção:</strong> Postos com <strong>fluxo intenso</strong> (Vila de Cava e Corumbá) exigem <strong>chegada antecipada</strong> para vacinas monodose (como a Varicela).
             </p>
             
-            <div class="postos-container">
+            <div id="postos" class="postos-container">
     <!-- Card 0 -->
-    <div class="posto-card">
+    <div  class="posto-card">
         <h3>Rancho Fundo</h3>
         <ul>
             <li><strong>Horário:</strong> 08:00–16:30 (Seg a Sex)</li>
@@ -165,7 +168,7 @@
     </div>
 
     <!-- Card 1 -->
-    <div class="posto-card">
+    <div class="posto-card" id="posto-detalhes-gaveta-vermelho">
         <h3>Vila de Cava</h3>
         <ul>
             <li><strong>Horário:</strong> 08:00–16:30 (Seg a Sex)</li>
@@ -176,7 +179,7 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="posto-card destaque">
+    <div class="posto-card">
         <h3>Santa Rita</h3>
         <ul>
             <li><strong>Horário:</strong> 08:00–22:00 (Seg a Sex)</li>
@@ -211,7 +214,7 @@
         </section>
 
 
-<section class="maps" id="id-maps">
+<section class="maps" id="pontos-mapa">
     <h2>Pontos de Vacinação</h2>
     <p class="section-description">O mapa abaixo destaca os postos visitados em Nova Iguaçu: </p> 
 
@@ -229,6 +232,51 @@
             </iframe>
         </div>
     </div>
+
+<section class="fotos-galeria" id="galeria" >
+
+<div>
+
+    <section id="galeria-visita" class="galeria-section">
+    <h2>Registro da Visita de Campo</h2>
+    <p class="section-description">O trabalho foi complementado com a visita técnica aos postos de Nova Iguaçu, validando os protocolos de armazenamento e aplicação <a  target="_blank" href="PEI - corrigido.pdf"><abbr title="Link do PDF"><strong>(Capítulo 4)</strong></abbr></a>.</p>
+    
+    <div class="galeria-container">
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-01.jpg','Foto em grupo 01')">
+        <img src="img/fotos para galeria/foto-01.jpg" alt="Foto em grupo 01">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-02.jpg','Rancho Fundo')">
+        <img src="img/fotos para galeria/foto-02.jpg" alt="Rancho Fundo">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-03.jpg','Foto do Papel do Comunicado')">
+        <img src="img/fotos para galeria/foto-03.jpg" alt="Foto do Papel do Comunicado ">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-04.jpg','Geladeira de Vacinas')">
+        <img src="img/fotos para galeria/foto-04.jpg" alt="Geladeira de Vacinas">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-05.jpg','Foto em grupo 02')">
+        <img src="img/fotos para galeria/foto-05.jpg" alt="Foto em grupo 02">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-06.jpg','Foto em grupo 03')">
+        <img src="img/fotos para galeria/foto-06.jpg" alt="Foto em grupo 03">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-07.jpg','Calendario')">
+        <img src="img/fotos para galeria/foto-07.jpg" alt="Calendario">
+    </div>
+    <div class="foto-item" onclick="abrirLightbox ('img/fotos para galeria/foto-08.jpg','Foto em grupo 04')"> 
+        <img src="img/fotos para galeria/foto-08.jpg" alt="Foto em grupo 04">
+    </div>
+</div>
+
+</section>
+
+</div>
+
+
+</section>
+
+
+
 </section> 
 
 
@@ -242,6 +290,12 @@
             </p>
         </section>
        </main>
+
+       <div id="lightbox-modal" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption" class="caption"></div>
+        </div>
 
        <footer class="footer">
          <div class="autores-container">
